@@ -1,0 +1,8 @@
+{
+    "name": "Push Test",
+    "short_name": "Push Test",
+    "start_url": "/",
+    "display": "standalone",
+    "gcm_sender_id": "41172670769",
+    "gcm_user_visibility_only": true
+}
