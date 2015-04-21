@@ -19,7 +19,7 @@
             });
 
             if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/js/service-worker.js').then(initializeState).catch(function(err){ console.warn('Could not start service worker.', err); });
+                navigator.serviceWorker.register('/service-worker.js').then(initializeState).catch(function(err){ console.warn('Could not start service worker.', err); });
             } else {
                 console.warn('Service workers are not supported in this browser.');
             }
