@@ -1,1 +1,84 @@
-"Hello World!" 
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Push notifications test</title>
+    <link rel="manifest" href="manifest.json" />
+    <script type="text/javascript">
+        var isPushEnabled = false;
+
+        window.addEventListener('load', function () {
+            var pushButton = document.querySelector('.js-push-button');
+            pushButton.addEventListener('click', function () {
+                if (isPushEnabled) {
+                    unsubscribe();
+                } else {
+                    subscribe();
+                }
+            });
+
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/js/service-worker.js').then(initializeState).catch(function(err){ console.warn('Could not start service worker.', err); });
+            } else {
+                console.warn('Service workers are not supported in this browser.');
+            }
+        });
+
+        function initializeState() {
+            if (!('showNotification' in ServiceWorkerRegistration.prototype)) return console.warn('Notifications are not supported.');
+
+            if (Notification.permission === 'denied') return console.warn('User blocked notifications.');
+
+            if (!('PushManager' in window)) return console.warn('Push messaging is not supported.');
+
+            navigator.serviceWorker.ready.then(function (serviceWorkerRegistration) {
+                serviceWorkerRegistration.pushManager.getSubscription().then(function (subscription) {
+                    var pushButton = document.querySelector('.js-push-button');
+                    pushButton.disabled = false;
+
+                    if (!subscription) return;
+
+                    sendSubscriptionToServer(subscription);
+
+                    pushButton.textContent = 'Disable push messages';
+                    isPushEnabled = true;
+                }).catch(function (err) { console.warn('Error during getSubscription();', err); });
+            }).catch(function(err){ console.warn('Error staring service worker.', err); });
+        }
+
+        function subscribe() {
+            var pushButton = document.querySelector('.js-push-button');
+            pushButton.disabled = true;
+
+            navigator.serviceWorker.ready.then(function (serviceWorkerRegistration) {
+                serviceWorkerRegistration.pushManager.subscribe().then(function (subscription) {
+                    isPushEnabled = true;
+                    pushButton.textContent = 'Disable push messages';
+                    pushButton.disabled = false;
+
+                    return sendSubscriptionToServer(subscription);
+                }).catch(function (err) {
+                    if (Notification.permission === 'denied') {
+                        console.warn('Permission for notifications was denied.');
+                        pushButton.disabled = true;
+                    } else {
+                        console.error('Unable to subscribe to push.', err);
+                        pushButton.disabled = false;
+                        pushButton.textContent = 'Enable Push Messages';
+                    }
+                });
+            });
+        }
+
+        function sendSubscriptionToServer(subscription) {
+            console.log(subscription);
+        }
+
+    </script>
+</head>
+<body>
+    <button class="js-push-button">Enable push messages</button>
+
+</body>
+</html>
