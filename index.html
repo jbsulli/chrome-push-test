@@ -80,7 +80,7 @@
             pushButton.disabled = true;
             
             navigator.serviceWorker.ready.then(function(serviceWorkerRegistration){
-                serviceWorkerRegistration.pushManager.getSubscription().then()(function(pushSubscription){
+                serviceWorkerRegistration.pushManager.getSubscription().then(function(pushSubscription){
                     if(!pushSubscription){
                         isPushEnabled = false;
                         pushButton.disabled = false;
