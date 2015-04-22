@@ -74,6 +74,35 @@
         function sendSubscriptionToServer(subscription) {
             console.log(subscription);
         }
+        
+        function unsubscribe(){
+            var pushButton = document.querySelector('.js-push-button');
+            pushButton.disabled = true;
+            
+            navigator.serviceWorker.ready.then(funciton(serviceWorkerRegistration){
+                serviceWorkerRegistration.pushManager.getSubscription().then()(function(pushSubscription){
+                    if(!pushSubscription){
+                        isPushEnabled = false;
+                        pushButton.disabled = false;
+                        pushButton.textContent = 'Enable push messages';
+                        return;
+                    }
+                    
+                    var subscriptionId = pushSubscription.subscriptionId;
+                    
+                    pushSubscription.unsubscribe().then(function(successful){
+                        pushButton.disabled = false;
+                        pushButton.textContent = 'Enable push messages';
+                        isPushEnabled = false;
+                    }).catch(function(err){
+                        console.warn('Unsubscribe error:', err);
+                        pushButton.disabled = false;
+                        pushButton.textContent = 'Enable push messages';
+                    })
+                    
+                });
+            });
+        }
 
     </script>
 </head>
