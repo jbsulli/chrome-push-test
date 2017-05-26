@@ -1,0 +1,28 @@
+#map {
+    height: 595px;
+    width: 730px;
+}
+
+.map-legend {
+    background:#fff;
+    border: 1px solid #ccc;
+    margin:10px;
+    padding:10px;
+}
+
+.map-legend h4 {
+    color:#A00;
+    font-size: 20px;
+    text-align: center;
+    margin:0;
+}
+
+.map-legend a {
+    display:block;
+    margin: 3px 0;
+    font-size: 12px;
+}
+
+.map-legend a.gray {
+    color:#666 !important;
+}
