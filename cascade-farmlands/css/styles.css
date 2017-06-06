@@ -20,9 +20,26 @@
 .map-legend a {
     display:block;
     margin: 3px 0;
-    font-size: 12px;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.map-legend a img {
+    -webkit-filter: grayscale(0);
+    filter: none;
+    opacity: 1;
+    position: relative;
+    top:5px;
+    margin-right: 7px;
 }
 
 .map-legend a.gray {
     color:#666 !important;
+}
+
+.map-legend a.gray img {
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+    filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
+    opacity: 0.3;
 }
