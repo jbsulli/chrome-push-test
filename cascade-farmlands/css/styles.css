@@ -1,44 +1,52 @@
 #map-wrap {
   width: 100%;
   padding-bottom: 94.29134%;
-  position: relative; }
+  position: relative;
+  font-family: 'Lato', Arial, Helvetica, sans-serif; }
+  #map-wrap img.mobile {
+    display: none; }
+  #map-wrap img.desktop {
+    display: block; }
   #map-wrap #map-intro {
     width: 100%;
     height: 100%;
-    background: rgba(171, 205, 65, 0.33);
+    background: rgba(181, 211, 58, 0.33);
     position: absolute; }
-    #map-wrap #map-intro .quad {
+    #map-wrap #map-intro .buttons {
       position: absolute;
-      width: 50%;
-      height: 50%; }
-      #map-wrap #map-intro .quad img {
-        display: block;
-        width: 100%;
-        position: absolute; }
-    #map-wrap #map-intro .quad-tl {
-      top: 0%;
-      left: 0%; }
-      #map-wrap #map-intro .quad-tl img {
-        bottom: 0;
-        right: 0; }
-    #map-wrap #map-intro .quad-tr {
-      top: 0%;
-      right: 0%; }
-      #map-wrap #map-intro .quad-tr img {
-        bottom: 0;
-        left: 0; }
-    #map-wrap #map-intro .quad-br {
-      bottom: 0%;
-      right: 0%; }
-      #map-wrap #map-intro .quad-br img {
-        top: 0;
-        left: 0; }
-    #map-wrap #map-intro .quad-bl {
-      bottom: 0%;
-      left: 0%; }
-      #map-wrap #map-intro .quad-bl img {
-        top: 0;
-        right: 0; }
+      top: 20.87683%;
+      left: 14.76378%;
+      right: 14.76378%;
+      height: 0;
+      padding-bottom: 70.47244%; }
+      #map-wrap #map-intro .buttons .quad {
+        position: absolute;
+        width: 50%;
+        height: 50%; }
+        #map-wrap #map-intro .buttons .quad img {
+          top: 2.7933%;
+          left: 2.7933%;
+          width: 94.41341%;
+          position: absolute;
+          border-radius: 50%;
+          transition: width 0.2s, top 0.2s, left 0.2s; }
+          #map-wrap #map-intro .buttons .quad img:hover {
+            z-index: 2;
+            width: 105.58659%;
+            top: -2.7933%;
+            left: -2.7933%; }
+      #map-wrap #map-intro .buttons .quad-tl {
+        left: 0;
+        top: 0; }
+      #map-wrap #map-intro .buttons .quad-tr {
+        right: 0;
+        top: 0; }
+      #map-wrap #map-intro .buttons .quad-br {
+        right: 0;
+        bottom: 0; }
+      #map-wrap #map-intro .buttons .quad-bl {
+        left: 0;
+        bottom: 0; }
 
 #map {
   position: absolute;
@@ -46,9 +54,27 @@
   bottom: 0;
   right: 0;
   left: 0; }
+  #map .btn {
+    display: block;
+    padding: 6px 42px;
+    text-align: center;
+    white-space: nowrap;
+    text-decoration: none;
+    background: #0083ca;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer; }
+    #map .btn:hover {
+      text-decoration: none;
+      background: #004164; }
+  #map .info-header {
+    margin: 0 0 13px;
+    font-size: 15px; }
   #map .map-legend {
     width: 250px;
-    margin: 0 10px; }
+    margin: 0 10px;
+    touch-action: manipulation; }
     #map .map-legend a {
       display: block;
       margin: 5px 0;
@@ -91,16 +117,17 @@
   #map #top-bar {
     width: 100%;
     height: 130px;
-    position: relative; }
+    position: relative;
+    font-family: 'Lato', Arial, Helvetica, sans-serif; }
     #map #top-bar .content {
       position: absolute;
       width: 100%;
       height: 100%;
-      background: rgba(171, 205, 65, 0.75); }
+      background: rgba(181, 211, 58, 0.33); }
     #map #top-bar a {
       width: 16.92913%;
-      height: 84.61538%;
-      margin: 0.98425% 3.22835%;
+      height: 88.46154%;
+      margin: 0.73819% 3.22835%;
       display: block;
       float: left;
       box-sizing: border-box;
@@ -108,7 +135,42 @@
       left: 3.22835%; }
       #map #top-bar a img {
         width: 100%;
-        height: 100%; }
+        height: 100%;
+        z-index: 1; }
+      #map #top-bar a .label {
+        position: absolute;
+        z-index: 2;
+        top: 35%;
+        margin: 0;
+        color: #fff;
+        font-size: 36px;
+        font-weight: 700;
+        display: block;
+        overflow: hidden; }
+        #map #top-bar a .label span {
+          display: block;
+          margin: -7px 0 -5px;
+          top: 0; }
+      #map #top-bar a .eat {
+        background: #f99b1c;
+        right: 0; }
+        #map #top-bar a .eat span {
+          left: 0; }
+      #map #top-bar a .drink {
+        background: #8e1c55;
+        left: 0; }
+        #map #top-bar a .drink span {
+          right: 0; }
+      #map #top-bar a .stay {
+        background: #0083ca;
+        left: 0; }
+        #map #top-bar a .stay span {
+          right: 0; }
+      #map #top-bar a .play {
+        background: #b5d33a;
+        right: 0; }
+        #map #top-bar a .play span {
+          left: 0; }
 
 @media handheld, only screen and (min-width: 768px) {
   #map .map-legend a .title .text {
@@ -120,6 +182,10 @@
     padding-bottom: 132.87402%;
     min-height: 715px;
     box-sizing: border-box; }
+    #map-wrap img.mobile {
+      display: block; }
+    #map-wrap img.desktop {
+      display: none; }
   #map .map-legend {
     width: 52px;
     background: none; }
@@ -162,7 +228,9 @@
         position: absolute;
         z-index: 3; }
     #map .map-legend .more img {
-      display: block; } }
+      display: block; }
+  #map #top-bar a .label {
+    display: none !important; } }
 
 @media handheld, only screen and (max-width: 480px) {
   #map-wrap {
