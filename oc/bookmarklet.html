@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>ShipStation Customs Bookmarklet</title>
+    </head>
+    <body>
+        <p><a href="javascript:!function(){function t(){for(var t=&quot;&quot;,e=0;e<arguments.length;e++)t&&(t+=&quot; &quot;),t+=arguments[e];alert(t)}var e=$(&quot;#order-drawer&quot;),o=e.find('.module[data-module-name=&quot;Items&quot;] .items > div > .row-fluid'),i=[],a=[],r=0,d=0,n=0,s=0;if(o.each(function(e,o){var s=$(o),l={description:s.find('[data-name=&quot;Description&quot;]').text().trim(),id:s.data(&quot;order-item-id&quot;),sku:s.data(&quot;order-item-sku&quot;),product_id:s.data(&quot;product-id&quot;),quantity:parseInt(s.find(&quot;.item-qty&quot;).text()),total:parseFloat((s.find(&quot;.text-success&quot;).text()||&quot;$&quot;).substr(1))};if(isNaN(l.total))return void t(&quot;Bad item total:&quot;,l.total);l.description.length>7&&&quot;coupon:&quot;===l.description.substr(0,7).toLowerCase()?(l.description=l.description.substr(7).trim(),l.coupon=!0,d+=l.total,a.push(l)):(r+=l.total,n++,i.push(l))}),0===d)return alert(&quot;No discount found.&quot;);var l=1+d/r;if($.each(i,function(t,e){e.dtotal=Math.floor(e.total*l*100)/100}),i.length>1)$(&quot;#order-drawer .btn-show-detail&quot;).click(),setTimeout(function(){$(&quot;.modal.order-detail .customs .item-value&quot;).each(function(t,e){e=$(e),e.val((Math.floor(e.val()*l*100)/100).toFixed(2)).change(),s++}),t(&quot;Applied&quot;,(-d/r*100).toFixed(1),&quot;% discount to&quot;,s,&quot;items&quot;)},100);else{var u=$(&quot;#order-drawer .form-customs-decl .item-value&quot;);u.val((Math.floor(u.val()*l*100)/100).toFixed(2)).change(),t(&quot;Applied&quot;,(-d/r*100).toFixed(1),&quot;% discount to 1 item&quot;)}}();">Adjust Customs</a></p>
+        <p>Drag the link above to your bookmarks bar</p>
+    </body>
+</html>
